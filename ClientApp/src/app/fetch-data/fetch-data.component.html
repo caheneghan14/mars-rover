@@ -1,0 +1,29 @@
+<h1 id="tableLabel">Hi, Welcome to Colleen Heneghan's Mars Rover Application</h1>
+
+<p>This component demonstrates fetching data from the Mars Rover API and showing the pictures obtained on a given day.</p>
+
+<div>
+  <input #date type="date" placeholder="yyyy-mm-dd" min="1997-01-01" max="2030-12-31" />
+</div>
+<div>
+  <button type='button' (click)="getPictures($event)" (submit)="stop()">Submit</button>
+</div>
+
+<table class='table table-striped' *ngIf="marsRoverPictures">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>SOL</th>
+      <th>Img</th>
+      <th>Earth Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pic of marsRoverPictures">
+      <td>{{ pic.id }}</td>
+      <td>{{ pic.sol }}</td>
+      <td><img style="width: 150px; height:150px;" src={{pic.img_src}} /></td>
+      <td>{{ pic.earth_date | date }}</td>
+    </tr>
+  </tbody>
+</table>
